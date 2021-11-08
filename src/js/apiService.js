@@ -7,13 +7,25 @@ export default class ImagesApiService {
     this.page = 1;
   }
 
-  fetchArticles() {
-    return fetch(`${URL}?key=${apiKey}&q=${this.searchQuery}&page=${this.page}&per_page=12&image_type=photo&pretty=true`)
-      .then(response => response.json())
-      .then(({ hits }) => {
-        this.page += 1;
-        return hits;
-      });
+  // fetchArticles() {
+  //   return fetch(`${URL}?key=${apiKey}&q=${this.searchQuery}&page=${this.page}&per_page=12&image_type=photo&pretty=true&orientation=horizontal`)
+  //     .then(response => response.json())
+  //     .then(({ hits }) => {
+  //       this.page += 1;
+  //       return hits;
+  //     })
+  // }
+
+  async fetchArticles() {
+    try {
+      const response = await fetch(`${URL}?key=${apiKey}&q=${this.searchQuery}&page=${this.page}&per_page=12&image_type=photo&pretty=true`);
+      const data = await response.json();
+      this.page += 1;
+      return data.hits;
+    }
+    catch (error) {
+      console.log(error);
+    }
   }
 
   resetPage() {

@@ -1,7 +1,20 @@
-.wraper {
+.wrapper,
+.pnotify {
   display: flex;
   justify-content: center;
 }
 .search-form {
   margin: 50px;
+}
+.gallery {
+  justify-content: center;
+  list-style: none;
+}
+
+.stats {
+  display: flex;
+}
+.stats-item {
+  text-align: center;
+  margin: 15px 15px 0;
 }
