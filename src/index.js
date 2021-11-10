@@ -51,20 +51,19 @@ function onSearch(e) {
 function onLoadMore() {
   fetchArticles();
 
-  console.log(refs.anchor);
 
-  refs.anchor.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start',
-  });
 }
 
 function fetchArticles() {
   loadMoreBtn.disabled();
 
   imagesApiService.fetchArticles().then(articles => {
-    appendArticlesMarkup(articles);
+   appendArticlesMarkup(articles);
     loadMoreBtn.enable();
+    refs.anchor.scrollIntoView({
+    behavior: 'smooth',
+    block: 'end',
+  });
   })
 }
 
