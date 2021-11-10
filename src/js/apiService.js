@@ -24,7 +24,7 @@ export default class ImagesApiService {
       return data.hits;
     }
     catch (error) {
-      console.log(error);
+      return Notiflix.Notify.warning('error');
     }
   }
 
