@@ -48,8 +48,12 @@ function onSearch(e) {
   loadMoreBtn.disabled();
 
   imagesApiService.fetchArticles().then(articles => {
-   appendArticlesMarkup(articles);
+    appendArticlesMarkup(articles);
     loadMoreBtn.enable();
+    if (!articles.length) {
+      loadMoreBtn.hide();
+      return Notiflix.Notify.warning('No matches found');
+    }
   })
 }
 
