@@ -45,27 +45,42 @@ function onSearch(e) {
   imagesApiService.resetPage();
   clearArticlesContainer();
 
-  fetchArticles();
-}
-
-function onLoadMore() {
-  fetchArticles();
-
-
-}
-
-function fetchArticles() {
   loadMoreBtn.disabled();
 
   imagesApiService.fetchArticles().then(articles => {
    appendArticlesMarkup(articles);
     loadMoreBtn.enable();
+  })
+}
+
+function onLoadMore() {
+loadMoreBtn.disabled();
+
+  imagesApiService.fetchArticles().then(articles => {
+   appendArticlesMarkup(articles);
+    loadMoreBtn.enable();
+
     refs.anchor.scrollIntoView({
     behavior: 'smooth',
     block: 'end',
   });
   })
+
 }
+
+// function fetchArticles() {
+//   loadMoreBtn.disabled();
+
+//   imagesApiService.fetchArticles().then(articles => {
+//    appendArticlesMarkup(articles);
+//     loadMoreBtn.enable();
+
+//     refs.anchor.scrollIntoView({
+//     behavior: 'smooth',
+//     block: 'end',
+//   });
+//   })
+// }
 
 function appendArticlesMarkup(articles) {
   refs.articlesContainer.insertAdjacentHTML('beforeend', articlesTpl(articles));
