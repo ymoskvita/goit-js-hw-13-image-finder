@@ -16,22 +16,10 @@ const loadMoreBtn = new LoadMoreBtn({
   hidden: true,
 });
 const imagesApiService = new ImagesApiService();
-// const observer = new IntersectionObserver(observerHandler, { threshold: 1, });
 
 refs.searchForm.addEventListener('submit', onSearch);
 refs.articlesContainer.addEventListener('click', onImgClick);
 loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
-
-// observer.observe(refs.anchor);
-
-// function observerHandler(entry, observer) {
-//   console.log(imagesApiService.page);
-//   if (imagesApiService.page >= 2) {
-//     // if (!entry.isIntersecting) return;
-//     fetchArticles();
-//   }
-//   // observer.unobserve(refs.anchor);
-// }
 
 function onSearch(e) {
   e.preventDefault();
@@ -64,6 +52,11 @@ loadMoreBtn.disabled();
    appendArticlesMarkup(articles);
     loadMoreBtn.enable();
 
+    if (!articles.length) {
+      loadMoreBtn.hide();
+      return Notiflix.Notify.warning('Pictures are over');
+    }
+
     refs.anchor.scrollIntoView({
     behavior: 'smooth',
     block: 'end',
@@ -71,20 +64,6 @@ loadMoreBtn.disabled();
   })
 
 }
-
-// function fetchArticles() {
-//   loadMoreBtn.disabled();
-
-//   imagesApiService.fetchArticles().then(articles => {
-//    appendArticlesMarkup(articles);
-//     loadMoreBtn.enable();
-
-//     refs.anchor.scrollIntoView({
-//     behavior: 'smooth',
-//     block: 'end',
-//   });
-//   })
-// }
 
 function appendArticlesMarkup(articles) {
   refs.articlesContainer.insertAdjacentHTML('beforeend', articlesTpl(articles));
