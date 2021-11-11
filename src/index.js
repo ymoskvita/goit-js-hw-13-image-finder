@@ -52,7 +52,7 @@ loadMoreBtn.disabled();
    appendArticlesMarkup(articles);
     loadMoreBtn.enable();
 
-    if (!articles.length) {
+    if (!articles.length || articles.length < 11) {
       loadMoreBtn.hide();
       return Notiflix.Notify.warning('Pictures are over');
     }
