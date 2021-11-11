@@ -54,6 +54,10 @@ loadMoreBtn.disabled();
 
     if (!articles.length || articles.length < 11) {
       loadMoreBtn.hide();
+      refs.anchor.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      });
       return Notiflix.Notify.warning('Pictures are over');
     }
 
