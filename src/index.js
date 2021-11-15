@@ -52,7 +52,7 @@ loadMoreBtn.disabled();
    appendArticlesMarkup(articles);
     loadMoreBtn.enable();
 
-    if (!articles.length || articles.length < 11) {
+    if (articles.length < 11) {
       loadMoreBtn.hide();
       refs.anchor.scrollIntoView({
         behavior: 'smooth',
